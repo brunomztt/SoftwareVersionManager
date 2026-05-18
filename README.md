@@ -2,21 +2,20 @@
 
 Uma API REST para gerenciamento de softwares e suas versões, desenvolvida com ASP.NET Core, Entity Framework Core e MySQL.
 
-Este projeto foi desenvolvido como desafio técnico para uma vaga de Desenvolvedor Backend Jr.
-
-Durante o desenvolvimento utilizei documentação oficial, pesquisas e apoio de ferramentas de IA como ChatGPT e Claude para aprender conceitos que ainda não faziam parte da minha rotina, principalmente Docker, configuração de containers e alguns detalhes do Entity Framework Core.
+Este projeto foi desenvolvido como desafio técnico para uma vaga de Desenvolvedor Backend Jr, consegui aproveitar apenas algumas horas para desenvolver o aplicativo.
+Durante o desenvolvimento utilizei como guia a mensagem com as especificações solicitadas para o projeto, como pesquisa e apoio utilizei de ferramentas de IA como ChatGPT e Claude para aprender conceitos que ainda não faziam parte da minha rotina, principalmente Docker, configuração de containers e alguns detalhes do Entity Framework Core.
 
 Mesmo com esse apoio, fiz questão de entender e testar cada etapa da aplicação, ajustando erros manualmente, configurando o ambiente, corrigindo problemas que tive na migrations, Docker e integração com MySQL até a API funcionar corretamente.
+Visando tornar os testes mais fáceis implementei uma class DbInitializer, voltada para popular o banco de dados.
 
 Esse projeto foi importante para consolidar conhecimentos em:
 
 * ASP.NET Core
 * APIs REST
 * Entity Framework Core
-* MySQL
+* SQL
 * Docker
 * Arquitetura em camadas
-* Dependency Injection
 
 ---
 

@@ -135,6 +135,7 @@ Esse foi o meu primeiro projeto utilizando Docker.
 Durante o desenvolvimento enfrentei problemas relacionados a:
 
 * configuração do Docker
+* Versionamento
 * exposição de portas
 * migrations do Entity Framework
 * compatibilidade de versões do EF Core

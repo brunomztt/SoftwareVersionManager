@@ -60,13 +60,7 @@ Esse projeto foi importante para consolidar conhecimentos em:
 docker compose up --build
 ```
 
-API:
-
-```txt
-http://localhost:8080
-```
-
-Swagger:
+API/Swagger:
 
 ```txt
 http://localhost:8080
@@ -160,5 +154,5 @@ Algumas melhorias irei adicionar futuramente:
 
 # 👨‍💻 Autor
 
-Bruno V M Mazetto
+Bruno V M Mazetto /
 Desenvolvedor Backend Jr

@@ -2,8 +2,8 @@ namespace SoftwareVersionManager.Models;
 
 public class SoftwareVersion
 {
-    public int Id { get; set; }
-    public int SoftwareId { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid SoftwareId { get; set; }
     public required string VersionNumber { get; set; }
     public string? ReleaseNotes { get; set; }
     public DateTime ReleaseDate { get; set; }

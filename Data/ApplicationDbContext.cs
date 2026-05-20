@@ -26,6 +26,14 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Software>()
+            .Property(s => s.Id)
+            .HasDefaultValueSql("UUID()");
+
+        modelBuilder.Entity<SoftwareVersion>()
+            .Property(sv => sv.Id)
+            .HasDefaultValueSql("UUID()");
+
         modelBuilder.Entity<SoftwareVersion>()
             .HasOne(sv => sv.Software)
             .WithMany(s => s.Versions)

@@ -48,7 +48,7 @@ public class SoftwaresController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<SoftwareDto>> GetById(int id)
+    public async Task<ActionResult<SoftwareDto>> GetById(Guid id)
     {
         _logger.LogInformation("Recuperando software com ID: {id}", id);
         var software = await _softwareService.GetSoftwareByIdAsync(id);
@@ -116,7 +116,7 @@ public class SoftwaresController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<SoftwareDto>> Update(int id, [FromBody] UpdateSoftwareDto updateDto)
+    public async Task<ActionResult<SoftwareDto>> Update(Guid id, [FromBody] UpdateSoftwareDto updateDto)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -167,7 +167,7 @@ public class SoftwaresController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(Guid id)
     {
         _logger.LogInformation("Deletando software com ID: {id}", id);
         var result = await _softwareService.DeleteSoftwareAsync(id);

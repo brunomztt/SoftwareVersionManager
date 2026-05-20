@@ -7,11 +7,11 @@ namespace SoftwareVersionManager.Services;
 public interface ISoftwareVersionService
 {
     Task<List<SoftwareVersion>> GetAllVersionsAsync();
-    Task<List<SoftwareVersion>> GetVersionsBySoftwareIdAsync(int softwareId);
-    Task<SoftwareVersion?> GetVersionByIdAsync(int id);
-    Task<SoftwareVersion> CreateVersionAsync(int softwareId, string versionNumber, string? releaseNotes, DateTime releaseDate, bool isDeprecated);
-    Task<SoftwareVersion> UpdateVersionAsync(int id, string versionNumber, string? releaseNotes, DateTime releaseDate, bool isDeprecated);
-    Task<bool> DeleteVersionAsync(int id);
+    Task<List<SoftwareVersion>> GetVersionsBySoftwareIdAsync(Guid softwareId);
+    Task<SoftwareVersion?> GetVersionByIdAsync(Guid id);
+    Task<SoftwareVersion> CreateVersionAsync(Guid softwareId, string versionNumber, string? releaseNotes, DateTime releaseDate, bool isDeprecated);
+    Task<SoftwareVersion> UpdateVersionAsync(Guid id, string versionNumber, string? releaseNotes, DateTime releaseDate, bool isDeprecated);
+    Task<bool> DeleteVersionAsync(Guid id);
 }
 
 public class SoftwareVersionService : ISoftwareVersionService
@@ -31,7 +31,7 @@ public class SoftwareVersionService : ISoftwareVersionService
             .ToListAsync();
     }
 
-    public async Task<List<SoftwareVersion>> GetVersionsBySoftwareIdAsync(int softwareId)
+    public async Task<List<SoftwareVersion>> GetVersionsBySoftwareIdAsync(Guid softwareId)
     {
         var softwareExists = await _context.Softwares.AnyAsync(s => s.Id == softwareId);
         if (!softwareExists)
@@ -43,14 +43,14 @@ public class SoftwareVersionService : ISoftwareVersionService
             .ToListAsync();
     }
 
-    public async Task<SoftwareVersion?> GetVersionByIdAsync(int id)
+    public async Task<SoftwareVersion?> GetVersionByIdAsync(Guid id)
     {
         return await _context.SoftwareVersions
             .Include(sv => sv.Software)
             .FirstOrDefaultAsync(sv => sv.Id == id);
     }
 
-    public async Task<SoftwareVersion> CreateVersionAsync(int softwareId, string versionNumber, string? releaseNotes, DateTime releaseDate, bool isDeprecated)
+    public async Task<SoftwareVersion> CreateVersionAsync(Guid softwareId, string versionNumber, string? releaseNotes, DateTime releaseDate, bool isDeprecated)
     {
         var software = await _context.Softwares.FindAsync(softwareId)
             ?? throw new KeyNotFoundException($"Software com ID {softwareId} não encontrado.");
@@ -69,7 +69,7 @@ public class SoftwareVersionService : ISoftwareVersionService
         return version;
     }
 
-    public async Task<SoftwareVersion> UpdateVersionAsync(int id, string versionNumber, string? releaseNotes, DateTime releaseDate, bool isDeprecated)
+    public async Task<SoftwareVersion> UpdateVersionAsync(Guid id, string versionNumber, string? releaseNotes, DateTime releaseDate, bool isDeprecated)
     {
         var version = await GetVersionByIdAsync(id)
             ?? throw new KeyNotFoundException($"Versão com ID {id} não encontrada.");
@@ -85,7 +85,7 @@ public class SoftwareVersionService : ISoftwareVersionService
         return version;
     }
 
-    public async Task<bool> DeleteVersionAsync(int id)
+    public async Task<bool> DeleteVersionAsync(Guid id)
     {
         var version = await GetVersionByIdAsync(id);
         if (version == null)

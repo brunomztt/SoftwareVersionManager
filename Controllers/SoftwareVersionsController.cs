@@ -23,7 +23,7 @@ public class SoftwareVersionsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<SoftwareVersionDto>>> GetVersionsBySoftware(int softwareId)
+    public async Task<ActionResult<List<SoftwareVersionDto>>> GetVersionsBySoftware(Guid softwareId)
     {
         _logger.LogInformation("Recuperando versões do software: {softwareId}", softwareId);
 
@@ -57,7 +57,7 @@ public class SoftwareVersionsController : ControllerBase
     }
 
     [HttpGet("{versionId}")]
-    public async Task<ActionResult<SoftwareVersionDto>> GetVersion(int softwareId, int versionId)
+    public async Task<ActionResult<SoftwareVersionDto>> GetVersion(Guid softwareId, Guid versionId)
     {
         _logger.LogInformation("Recuperando versão {versionId} do software {softwareId}", versionId, softwareId);
 
@@ -81,7 +81,7 @@ public class SoftwareVersionsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<SoftwareVersionDto>> CreateVersion(int softwareId, [FromBody] CreateSoftwareVersionDto createDto)
+    public async Task<ActionResult<SoftwareVersionDto>> CreateVersion(Guid softwareId, [FromBody] CreateSoftwareVersionDto createDto)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -124,7 +124,7 @@ public class SoftwareVersionsController : ControllerBase
     }
 
     [HttpPut("{versionId}")]
-    public async Task<ActionResult<SoftwareVersionDto>> UpdateVersion(int softwareId, int versionId, [FromBody] UpdateSoftwareVersionDto updateDto)
+    public async Task<ActionResult<SoftwareVersionDto>> UpdateVersion(Guid softwareId, Guid versionId, [FromBody] UpdateSoftwareVersionDto updateDto)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -166,7 +166,7 @@ public class SoftwareVersionsController : ControllerBase
     }
 
     [HttpDelete("{versionId}")]
-    public async Task<IActionResult> DeleteVersion(int softwareId, int versionId)
+    public async Task<IActionResult> DeleteVersion(Guid softwareId, Guid versionId)
     {
         _logger.LogInformation("Deletando versão {versionId} do software {softwareId}", versionId, softwareId);
 

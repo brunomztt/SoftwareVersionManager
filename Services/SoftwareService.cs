@@ -7,10 +7,10 @@ namespace SoftwareVersionManager.Services;
 public interface ISoftwareService
 {
     Task<List<Software>> GetAllSoftwaresAsync();
-    Task<Software?> GetSoftwareByIdAsync(int id);
+    Task<Software?> GetSoftwareByIdAsync(Guid id);
     Task<Software> CreateSoftwareAsync(string name, string? description, string? developer);
-    Task<Software> UpdateSoftwareAsync(int id, string name, string? description, string? developer);
-    Task<bool> DeleteSoftwareAsync(int id);
+    Task<Software> UpdateSoftwareAsync(Guid id, string name, string? description, string? developer);
+    Task<bool> DeleteSoftwareAsync(Guid id);
 }
 
 public class SoftwareService : ISoftwareService
@@ -30,7 +30,7 @@ public class SoftwareService : ISoftwareService
             .ToListAsync();
     }
 
-    public async Task<Software?> GetSoftwareByIdAsync(int id)
+    public async Task<Software?> GetSoftwareByIdAsync(Guid id)
     {
         return await _context.Softwares
             .Include(s => s.Versions)
@@ -51,7 +51,7 @@ public class SoftwareService : ISoftwareService
         return software;
     }
 
-    public async Task<Software> UpdateSoftwareAsync(int id, string name, string? description, string? developer)
+    public async Task<Software> UpdateSoftwareAsync(Guid id, string name, string? description, string? developer)
     {
         var software = await GetSoftwareByIdAsync(id)
             ?? throw new KeyNotFoundException($"Software com ID {id} não encontrado.");
@@ -66,7 +66,7 @@ public class SoftwareService : ISoftwareService
         return software;
     }
 
-    public async Task<bool> DeleteSoftwareAsync(int id)
+    public async Task<bool> DeleteSoftwareAsync(Guid id)
     {
         var software = await GetSoftwareByIdAsync(id);
         if (software == null)
